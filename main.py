@@ -53,9 +53,15 @@ class Menu:
             for button in self.items:
                 if button.is_clicked(mouse_pos):
                     print("Вы нажали на кнопку:", button.text)
+                    if button.text == "Играть":
+                        # Запуск игры
+                        pass
+                    elif button.text == "Выход":
+                        pygame.quit()
+                        break
 
 # Создание меню
-menu_items = ["Новая игра", "Настройки", "Выход"]
+menu_items = ["Играть", "Выход"]
 menu = Menu(menu_items)
 
 # Шрифт
