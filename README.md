@@ -3,19 +3,19 @@ ultra mega hyper syper rtx gachi fighting
 
 программирование:
   1. main
-  3. таймер(прога)
-  4. class Player
-  5. controls
-  6. comparison of strokes(сравнение ударов)
-  7. class HP
-  8. class Player 2 (or computer)
-  9. types of strikes and block()
-  10. комбо(возможно?)
+  2. таймер(прога)
+  3. class Player(лёха)
+  4. controls(макс)
+  5. comparison of strokes(сравнение ударов)(лёха)
+  6. class HP(макс)
+  7. class Player 2 (or computer)(лёха)
+  8. types of strikes and block
+  9. комбо(дочерняя задача)
 дизайн:
-  1. фон
-  2. таймер
-  3. персонажи(1 и 2)
-  4. полоска HP
-  5. меню
-  6. эффекты(возможно?)
+  10. фон
+  11. таймер(дизайн)
+  12. персонажи(1 и 2)(макс)
+  13. полоска HP
+  14. меню(макс)
+  15. эффекты(возможно?)(макс)
   
