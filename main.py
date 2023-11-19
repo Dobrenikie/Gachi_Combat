@@ -1,15 +1,19 @@
 import pygame
+import sys
 
 # Инициализация Pygame
 pygame.init()
 
 # Создание окна игры
-screen = pygame.display.set_mode((800, 600))
+screen = pygame.display.set_mode((1200, 800))
 pygame.display.set_caption("Моя игра")
 
 # Цвета
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
+
+# Шрифт
+font = pygame.font.Font(None, 36)
 
 # Класс для кнопок
 class Button:
@@ -28,54 +32,43 @@ class Button:
         label_pos_x = self.pos_x + (self.width - label_width) // 2
         label_pos_y = self.pos_y + (self.height - label_height) // 2
         surface.blit(label, (label_pos_x, label_pos_y))
-
+        
     def is_clicked(self, mouse_pos):
         if self.pos_x <= mouse_pos[0] <= self.pos_x + self.width and \
            self.pos_y <= mouse_pos[1] <= self.pos_y + self.height:
             return True
         return False
 
-# Класс для меню
-class Menu:
-    def __init__(self, items):
-        self.items = []
-        for index, item in enumerate(items):
-            button = Button(item, 300, 200 + 70 * index, 200, 50)
-            self.items.append(button)
+# Создание кнопки "Играть"
+play_button = Button("Играть", 500, 300, 200, 50)
 
-    def draw(self, surface):
-        for button in self.items:
-            button.draw(surface)
+# Создание кнопки "Выход"
+exit_button = Button("Выход", 500, 400, 200, 50)
 
-    def handle_event(self, event):
-        if event.type == pygame.MOUSEBUTTONUP:
-            mouse_pos = pygame.mouse.get_pos()
-            for button in self.items:
-                if button.is_clicked(mouse_pos):
-                    if button.text == "Выход":
-                        global running
-                        running = False
-
-# Создание меню
-menu_items = ["Играть", "Выход"]
-menu = Menu(menu_items)
-
-# Шрифт
-font = pygame.font.Font(None, 36)
 
 # Основной цикл игры
 running = True
+playing_controls = False  # Переменная для отслеживания состояния игры controls.py
 while running:
-    # Обработка событий
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        menu.handle_event(event)
+        elif event.type == pygame.MOUSEBUTTONUP:
+            mouse_pos = pygame.mouse.get_pos()
+            if play_button.is_clicked(mouse_pos):
+                playing_controls = True  # Устанавливаем состояние игры controls.py
+            elif exit_button.is_clicked(mouse_pos):
+                pygame.quit()
+                sys.exit()
 
-    # Отрисовка
     screen.fill(BLACK)
-    menu.draw(screen)
+    play_button.draw(screen)
+    exit_button.draw(screen)
     pygame.display.flip()
 
-# Завершение игры
+    if playing_controls:
+        import controls  # Импортируем модуль controls.py
+        controls.play()  # Запускаем игру controls.py
+        playing_controls = False  # Сбрасываем состояние игры controls.py
+
 pygame.quit()
