@@ -11,6 +11,7 @@ pygame.display.set_caption("Моя игра")
 # Цвета
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
+background = pygame.image.load("images/background.jpg")
 
 # Шрифт
 font = pygame.font.Font(None, 36)
@@ -33,17 +34,22 @@ class Button:
         label_pos_y = self.pos_y + (self.height - label_height) // 2
         surface.blit(label, (label_pos_x, label_pos_y))
         
+        
     def is_clicked(self, mouse_pos):
         if self.pos_x <= mouse_pos[0] <= self.pos_x + self.width and \
            self.pos_y <= mouse_pos[1] <= self.pos_y + self.height:
             return True
         return False
 
+
 # Создание кнопки "Играть"
 play_button = Button("Играть", 500, 300, 200, 50)
 
 # Создание кнопки "Выход"
 exit_button = Button("Выход", 500, 400, 200, 50)
+def draw_background(self, surface):
+        background = pygame.image.load("images/background.jpg")
+        surface.blit(background, (0, 0))
 
 
 # Основной цикл игры
@@ -61,7 +67,7 @@ while running:
                 pygame.quit()
                 sys.exit()
 
-    screen.fill(BLACK)
+    
     play_button.draw(screen)
     exit_button.draw(screen)
     pygame.display.flip()
