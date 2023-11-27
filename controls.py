@@ -44,10 +44,20 @@ class Game:
                     (self.player_choice == 1 and self.computer_choice == 2) or \
                     (self.player_choice == 2 and self.computer_choice == 3):
                 print("Получает урон компьютер")
-                self.computer_health -= 5
+                if self.player_choice == 1:
+                    self.computer_health -= 5
+                elif self.player_choice == 2:
+                    self.computer_health -= 3
+                elif self.player_choice == 3:
+                    self.computer_health -= 1
             else:
+                if self.computer_choice == 1:
+                    self.player_health -= 5
+                elif self.computer_choice == 2:
+                    self.player_health -= 3
+                elif self.computer_choice == 3:
+                    self.player_health -= 1
                 print("Получает урон игрок")
-                self.player_health -= 5
 
             if self.player_health <= 0 or self.computer_health <= 0:
                 self.game_over = True
