@@ -37,28 +37,48 @@ class Game:
     def update(self):
         if not self.game_over and self.player_choice is not None:
             self.computer_choice = random.randint(1, 3)
-
+            #если ничья
             if self.player_choice == self.computer_choice:
                 print("Ничья, никто не получает урон")
-            elif (self.player_choice == 1 and self.computer_choice == 3) or \
-                    (self.player_choice == 1 and self.computer_choice == 2) or \
-                    (self.player_choice == 2 and self.computer_choice == 3):
-                print("Получает урон компьютер")
-                if self.player_choice == 1:
-                    self.computer_health -= 5
-                elif self.player_choice == 2:
-                    self.computer_health -= 3
-                elif self.player_choice == 3:
-                    self.computer_health -= 1
-            else:
-                if self.computer_choice == 1:
-                    self.player_health -= 5
-                elif self.computer_choice == 2:
-                    self.player_health -= 3
-                elif self.computer_choice == 3:
-                    self.player_health -= 1
-                print("Получает урон игрок")
-
+            
+            #если выбор игрока цифра 3
+            elif self.computer_choice == 1 and self.player_choice ==3:
+                self.computer_health -= 1
+                print("Компьютер получает 1 урона")
+                self.player_health -= 5
+                print("Игрок получает 5 урона")
+            elif self.computer_choice == 2 and self.player_choice == 3:
+                self.computer_health -= 1
+                print("Компьютер получает 1 урона")
+                self.player_health -= 3
+                print("Игрок получает 3 урона")
+            
+            #если выбор игрока цифра 2
+            elif self.computer_choice == 1 and self.player_choice == 2:
+                self.computer_health -= 3
+                print("Компьютер получает 3 урона")
+                self.player_health -= 5
+                print("Игрок получает 5 урона")
+            elif self.computer_choice == 3 and self.player_choice == 2:
+                self.computer_health -= 3
+                print("Компьютер получает 3 урона")
+                self.player_health -= 1
+                print("Игрок получает 1 урона")
+            
+            #если выбор игрока цифра 1
+            elif self.computer_choice == 2 and self.player_choice == 1:
+                self.computer_health -= 5
+                print("Компьютер получает 5 урона")
+                self.player_health -= 3
+                print("Игрок получает 3 урона")
+            elif self.computer_choice == 3 and self.player_choice == 1:
+                self.computer_health -= 5
+                print("Компьютер получает 5 урона")
+                self.player_health -= 1
+                print("Игрок получает 1 урона")
+            
+            
+                        
             if self.player_health <= 0 or self.computer_health <= 0:
                 self.game_over = True
                 if self.player_health <= 0:
